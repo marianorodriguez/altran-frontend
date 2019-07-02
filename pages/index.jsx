@@ -9,8 +9,8 @@ export default () => (
   <div className="main">
     <SearchBar />
     <div className="container">
-      <Pagination />
       <GnomesList />
+      <Pagination />
     </div>
   </div>
 );
