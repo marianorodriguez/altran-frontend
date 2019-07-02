@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchGnomes } from '../store/gnomes/actions';
 import GnomeCard from './GnomeCard';
+import Message from './Message';
 import './GnomesList.css';
 
 function listToMatrix(list, elementsPerSubArray) {
@@ -32,21 +33,24 @@ class GnomesList extends Component {
   render() {
     const { loading, error, gnomes } = this.props;
     if (error) {
-      return <div>{error}</div>;
+      return <Message type="error" message={error} />;
     }
     let className = 'gnomes-list';
     if (loading) {
       className += ' loading';
     }
+    if (gnomes.length === 0) {
+      return <Message type="info" message="Oops... we ran out of gnomes!" />;
+    }
     return (
       <div className={className}>
         {
-            listToMatrix(gnomes, 4)
-              .map((gnomesRow, i) => (
-                <div className="tile is-ancestor" key={`gnomesRow${i}`}>
-                  {gnomesRow.map(gnome => (<GnomeCard key={gnome.id} gnome={gnome} />))}
-                </div>
-              ))
+          listToMatrix(gnomes, 4)
+            .map(gnomesRow => (
+              <div className="tile is-ancestor">
+                {gnomesRow.map(gnome => (<GnomeCard key={gnome.id} gnome={gnome} />))}
+              </div>
+            ))
         }
       </div>
     );
@@ -68,7 +72,7 @@ GnomesList.defaultProps = {
 const mapStateToProps = state => ({
   loading: state.gnomes.loading,
   error: state.gnomes.error,
-  gnomes: state.gnomes.items,
+  gnomes: state.gnomes.paginatedAndFilteredItems,
 });
 
 export default connect(mapStateToProps)(GnomesList);

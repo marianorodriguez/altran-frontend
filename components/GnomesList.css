@@ -1,3 +1,6 @@
 .gnomes-list {
     margin: 15px;
 }
+.gnomes-list.loading {
+    opacity: 0.5;
+}

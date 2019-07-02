@@ -3,6 +3,7 @@ import Axios from 'axios';
 export const FETCH_GNOMES_BEGIN = 'FETCH_GNOMES_BEGIN';
 export const FETCH_GNOMES_SUCCESS = 'FETCH_GNOMES_SUCCESS';
 export const FETCH_GNOMES_ERROR = 'FETCH_GNOMES_ERROR';
+export const FILTER_GNOMES = 'FILTER_GNOMES';
 
 const fetchGnomesBegin = () => ({
   type: FETCH_GNOMES_BEGIN,
@@ -17,6 +18,15 @@ const fetchGnomesError = error => ({
   type: FETCH_GNOMES_ERROR,
   payload: { error },
 });
+
+const filterGnomesBegin = text => ({
+  type: FILTER_GNOMES,
+  payload: { text },
+});
+
+export function filterGnomes(text) {
+  return dispatch => dispatch(filterGnomesBegin(text));
+}
 
 export function fetchGnomes() {
   return (dispatch) => {
