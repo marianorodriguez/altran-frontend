@@ -31,7 +31,9 @@ class GnomesList extends Component {
   }
 
   render() {
-    const { loading, error, gnomes } = this.props;
+    const {
+      loading, error, gnomes, total,
+    } = this.props;
     if (error) {
       return <Message type="error" message={error} />;
     }
@@ -39,7 +41,7 @@ class GnomesList extends Component {
     if (loading) {
       className += ' loading';
     }
-    if (gnomes.length === 0) {
+    if (!loading && gnomes.length === 0 && total > 0) {
       return <Message type="info" message="Oops... we ran out of gnomes!" />;
     }
     return (
@@ -61,6 +63,7 @@ GnomesList.propTypes = {
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
   gnomes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  total: PropTypes.number.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 
@@ -73,6 +76,7 @@ const mapStateToProps = state => ({
   loading: state.gnomes.loading,
   error: state.gnomes.error,
   gnomes: state.gnomes.paginatedAndFilteredItems,
+  total: state.gnomes.items.length,
 });
 
 export default connect(mapStateToProps)(GnomesList);
