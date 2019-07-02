@@ -24,6 +24,10 @@ function listToMatrix(list, elementsPerSubArray) {
   return matrix;
 }
 
+function paginate(items, page, itemsPerPage) {
+  return items.slice(page * itemsPerPage, (page * itemsPerPage) + itemsPerPage);
+}
+
 class GnomesList extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
@@ -32,7 +36,7 @@ class GnomesList extends Component {
 
   render() {
     const {
-      loading, error, gnomes, total,
+      loading, error, gnomes, total, perPage, page,
     } = this.props;
     if (error) {
       return <Message type="error" message={error} />;
@@ -47,7 +51,7 @@ class GnomesList extends Component {
     return (
       <div className={className}>
         {
-          listToMatrix(gnomes, 4)
+          listToMatrix(paginate(gnomes, page, perPage), 4)
             .map(gnomesRow => (
               <div className="tile is-ancestor">
                 {gnomesRow.map(gnome => (<GnomeCard key={gnome.id} gnome={gnome} />))}
@@ -64,6 +68,8 @@ GnomesList.propTypes = {
   error: PropTypes.string,
   gnomes: PropTypes.arrayOf(PropTypes.object).isRequired,
   total: PropTypes.number.isRequired,
+  perPage: PropTypes.number.isRequired,
+  page: PropTypes.number.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 
@@ -75,8 +81,10 @@ GnomesList.defaultProps = {
 const mapStateToProps = state => ({
   loading: state.gnomes.loading,
   error: state.gnomes.error,
-  gnomes: state.gnomes.paginatedAndFilteredItems,
+  gnomes: state.gnomes.filteredItems,
   total: state.gnomes.items.length,
+  perPage: state.gnomes.MAX_ITEMS_PER_PAGE,
+  page: state.gnomes.page,
 });
 
 export default connect(mapStateToProps)(GnomesList);
