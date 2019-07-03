@@ -10,7 +10,7 @@ const GnomeCard = ({ gnome }) => (
 
 
 GnomeCard.propTypes = {
-  gnome: PropTypes.objectOf(PropTypes.object).isRequired,
+  gnome: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default GnomeCard;
