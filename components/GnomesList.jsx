@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchGnomes, loadMore } from '../store/gnomes/actions';
+import { fetchGnomes } from '../store/gnomes/actions';
 import GnomeCard from './GnomeCard';
 import Message from './Message';
 import './GnomesList.css';
@@ -26,32 +26,9 @@ function listToMatrix(list, elementsPerSubArray) {
 
 
 class GnomesList extends Component {
-  constructor(props) {
-    super(props);
-    this.loadMoreGnomes = this.loadMoreGnomes.bind(this);
-    this.trackScrolling = this.trackScrolling.bind(this);
-  }
-
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchGnomes());
-    document.addEventListener('scroll', this.trackScrolling);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('scroll', this.trackScrolling);
-  }
-
-  trackScrolling() {
-    const wrappedElement = document.getElementById('gnomesList');
-    if (wrappedElement.getBoundingClientRect().bottom <= window.innerHeight) {
-      this.loadMoreGnomes();
-    }
-  }
-
-  loadMoreGnomes() {
-    const { dispatch } = this.props;
-    dispatch(loadMore());
   }
 
   render() {
@@ -77,10 +54,6 @@ class GnomesList extends Component {
                 {gnomesRow.map(gnome => (<GnomeCard key={gnome.id} gnome={gnome} />))}
               </div>
             ))
-          }
-        {
-          !loading && total > 0
-          && <div className="centered button is-outlined is-primary" onClick={this.loadMoreGnomes}>LOAD MORE</div>
         }
       </div>
     );
