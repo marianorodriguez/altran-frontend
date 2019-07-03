@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { fetchGnomes } from '../store/gnomes/actions';
 import GnomeCard from './GnomeCard';
 import Message from './Message';
-import './GnomesList.css';
 
 function listToMatrix(list, elementsPerSubArray) {
   const matrix = [];
