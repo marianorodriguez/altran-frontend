@@ -9,6 +9,7 @@ import {
 const initialState = {
   items: [],
   filteredItems: [],
+  itemsPerPage: 16,
   itemsInPage: 16,
   loading: false,
   error: null,
@@ -38,12 +39,13 @@ export default (state = initialState, action) => {
     case FILTER_GNOMES:
       return {
         ...state,
-        filteredItems: state.items.filter(i => i.name.match(new RegExp(action.payload.text, 'gi'))),
+        filteredItems: state.items
+          .filter(i => i.name.toLowerCase().indexOf(action.payload.text.toLowerCase()) > -1),
       };
     case LOAD_MORE_GNOMES:
       return {
         ...state,
-        itemsInPage: state.itemsInPage + 16,
+        itemsInPage: state.itemsInPage + state.itemsPerPage,
       };
     default:
       return state;
