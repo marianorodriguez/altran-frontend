@@ -27,7 +27,7 @@ class Searchbar extends Component {
             </h2>
             <div className="field">
               <div className="control">
-                <input className="input is-primary" type="text" placeholder="search by name or profession" onChange={this.handleInputChange} />
+                <input className="input is-primary is-rounded" type="text" placeholder="search by name or profession" onChange={this.handleInputChange} />
               </div>
             </div>
           </div>

@@ -28,7 +28,6 @@ html {
     border-radius: 60px;
     right: 20px;
     bottom: 20px;
-    visibility: hidden;
     transition: all 250ms ease;
     background: #00d1b2;
     cursor: pointer;
@@ -39,7 +38,6 @@ html {
 }
 
 .return-to-top.visible {
-    visibility: visible;
     width: 60px;
     height: 60px;
     opacity: 1;
