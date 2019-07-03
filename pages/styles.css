@@ -1,6 +1,9 @@
 html {
     scroll-behavior: smooth;
 }
+.main {
+    background-color: #e4e5ea;
+}
 .gnomes-message {
     margin: 15px;
 }
@@ -13,16 +16,16 @@ html {
 .gnome-card {
     padding: 0;
     cursor: pointer;
+    transition: transform 400ms ease;
 }
-.gnome-card:hover img {
-    transform: scale(1.1);
+.gnome-card:hover {
+    transform: scale(1.05);
 }
 .gnome-card .image {
     overflow: hidden;
     border-radius: 6px 6px 0 0;
 }
 .gnome-card img {
-    transition: transform 500ms ease;
     object-fit: cover;
 }
 .centered {
