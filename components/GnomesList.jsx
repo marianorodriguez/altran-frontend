@@ -66,7 +66,7 @@ class GnomesList extends Component {
       className += ' loading';
     }
     if (!loading && gnomes.length === 0 && total > 0) {
-      return <Message type="info" message="Oops... we ran out of gnomes!" />;
+      return <Message type="warning" message="Oops... we ran out of gnomes!" />;
     }
     return (
       <div className={className} id="gnomesList">
@@ -80,7 +80,7 @@ class GnomesList extends Component {
           }
         {
           !loading && total > 0
-          && <div className="centered button is-outlined is-primary" onClick={this.loadMoreGnomes}>LOAD MORE GNOMES</div>
+          && <div className="centered button is-outlined is-primary" onClick={this.loadMoreGnomes}>LOAD MORE</div>
         }
       </div>
     );
