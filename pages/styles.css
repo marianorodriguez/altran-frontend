@@ -1,3 +1,6 @@
+html {
+    scroll-behavior: smooth;
+}
 .gnomes-message {
     margin: 15px;
 }
@@ -12,4 +15,32 @@
     width: 100%;
     max-width: 200px;
     margin: 0 auto;
+}
+
+.return-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    border-radius: 60px;
+    right: 20px;
+    bottom: 20px;
+    visibility: hidden;
+    transition: all 250ms ease;
+    background: #00d1b2;
+    cursor: pointer;
+}
+.return-to-top img {
+    height: 25px;
+    width: auto;
+}
+
+.return-to-top.visible {
+    visibility: visible;
+    width: 60px;
+    height: 60px;
+    opacity: 1;
 }

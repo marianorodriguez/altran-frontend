@@ -3,6 +3,7 @@ import React from 'react';
 import GnomesList from '../components/GnomesList';
 import SearchBar from '../components/SearchBar';
 import LoadMore from '../components/LoadMore';
+import ReturnToTop from '../components/ReturnToTopButton';
 import 'bulma/css/bulma.min.css';
 import './styles.css';
 
@@ -13,5 +14,6 @@ export default () => (
       <GnomesList />
       <LoadMore />
     </div>
+    <ReturnToTop />
   </div>
 );
