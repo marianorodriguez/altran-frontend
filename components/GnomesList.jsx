@@ -42,7 +42,7 @@ class GnomesList extends Component {
       className += ' loading';
     }
     if (!loading && gnomes.length === 0 && total > 0) {
-      return <Message type="warning" message="Oops... we ran out of gnomes!" />;
+      return <Message type="primary" message="Oops... we ran out of gnomes!" />;
     }
     return (
       <div className={className} id="gnomesList">
