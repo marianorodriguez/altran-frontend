@@ -21,7 +21,7 @@ class MyApp extends App {
     return (
       <Container>
         <Head>
-          <title>Next.js PWA</title>
+          <title>Gnome finder</title>
         </Head>
         <Provider store={reduxStore}>
           <Component {...pageProps} />

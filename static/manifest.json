@@ -1,6 +1,6 @@
 {
-    "name": "Next.js PWA",
-    "short_name": "Next.js",
+    "name": "Gnome Finder",
+    "short_name": "GFinder",
     "description": "Progressive Web App made with Next.js",
     "start_url": "/",
     "scope": "/",
