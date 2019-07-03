@@ -31,8 +31,10 @@ class LoadMore extends Component {
   }
 
   render() {
-    const { loading, total, itemsPerPage } = this.props;
-    if (!loading && total > itemsPerPage) {
+    const {
+      loading, total, allGnomes, itemsPerPage, itemsInPage,
+    } = this.props;
+    if (!loading && total > itemsPerPage && itemsInPage < allGnomes) {
       return (
         <div className="centered button is-outlined is-primary" onClick={this.loadMoreGnomes}>LOAD MORE</div>
       );
@@ -44,6 +46,8 @@ class LoadMore extends Component {
 LoadMore.propTypes = {
   loading: PropTypes.bool.isRequired,
   total: PropTypes.number.isRequired,
+  allGnomes: PropTypes.number.isRequired,
+  itemsInPage: PropTypes.number.isRequired,
   itemsPerPage: PropTypes.number.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
@@ -51,6 +55,8 @@ LoadMore.propTypes = {
 const mapStateToProps = state => ({
   loading: state.gnomes.loading,
   total: state.gnomes.filteredItems.length,
+  allGnomes: state.gnomes.items.length,
+  itemsInPage: state.gnomes.itemsInPage,
   itemsPerPage: state.gnomes.itemsPerPage,
 });
 
