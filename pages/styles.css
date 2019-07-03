@@ -10,6 +10,21 @@ html {
 .gnomes-list.loading {
     opacity: 0.5;
 }
+.gnome-card {
+    padding: 0;
+    cursor: pointer;
+}
+.gnome-card:hover img {
+    transform: scale(1.1);
+}
+.gnome-card .image {
+    overflow: hidden;
+    border-radius: 6px 6px 0 0;
+}
+.gnome-card img {
+    transition: transform 500ms ease;
+    object-fit: cover;
+}
 .centered {
     display: flex !important; 
     width: 100%;
