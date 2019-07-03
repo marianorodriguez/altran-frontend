@@ -4,7 +4,7 @@ export const FETCH_GNOMES_BEGIN = 'FETCH_GNOMES_BEGIN';
 export const FETCH_GNOMES_SUCCESS = 'FETCH_GNOMES_SUCCESS';
 export const FETCH_GNOMES_ERROR = 'FETCH_GNOMES_ERROR';
 export const FILTER_GNOMES = 'FILTER_GNOMES';
-export const PAGINATE_GNOMES = 'PAGINATE_GNOMES';
+export const LOAD_MORE_GNOMES = 'LOAD_MORE_GNOMES';
 
 const fetchGnomesBegin = () => ({
   type: FETCH_GNOMES_BEGIN,
@@ -25,17 +25,16 @@ const filterGnomesBegin = text => ({
   payload: { text },
 });
 
-const paginateGnomes = page => ({
-  type: PAGINATE_GNOMES,
-  payload: { page },
+const loadMoreGnomes = () => ({
+  type: LOAD_MORE_GNOMES,
 });
 
 export function filterGnomes(text) {
   return dispatch => dispatch(filterGnomesBegin(text));
 }
 
-export function changePage(page) {
-  return dispatch => dispatch(paginateGnomes(page));
+export function loadMore() {
+  return dispatch => dispatch(loadMoreGnomes());
 }
 
 export function fetchGnomes() {

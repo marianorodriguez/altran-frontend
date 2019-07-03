@@ -4,3 +4,9 @@
 .gnomes-list.loading {
     opacity: 0.5;
 }
+.centered {
+    display: flex !important; 
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+}
