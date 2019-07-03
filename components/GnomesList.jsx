@@ -73,7 +73,7 @@ class GnomesList extends Component {
         {
           listToMatrix(gnomes.slice(0, itemsInPage), 4)
             .map(gnomesRow => (
-              <div className="tile is-ancestor">
+              <div className="tile is-ancestor" key={gnomesRow.map(r => r.id).join('')}>
                 {gnomesRow.map(gnome => (<GnomeCard key={gnome.id} gnome={gnome} />))}
               </div>
             ))
