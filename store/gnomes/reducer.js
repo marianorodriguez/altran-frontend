@@ -15,6 +15,16 @@ const initialState = {
   error: null,
 };
 
+function doFilter(state, action) {
+  const { text } = action.payload;
+  return {
+    ...state,
+    filteredItems: state.items
+      .filter(i => i.name.toLowerCase().indexOf(text.toLowerCase()) > -1
+            || i.professions.some(p => p.toLowerCase().indexOf(text.toLowerCase()) > -1)),
+  };
+}
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_GNOMES_BEGIN:
@@ -37,11 +47,7 @@ export default (state = initialState, action) => {
         error: action.payload.error,
       };
     case FILTER_GNOMES:
-      return {
-        ...state,
-        filteredItems: state.items
-          .filter(i => i.name.toLowerCase().indexOf(action.payload.text.toLowerCase()) > -1),
-      };
+      return doFilter(state, action);
     case LOAD_MORE_GNOMES:
       return {
         ...state,
