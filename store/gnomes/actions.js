@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import API from '../../api';
 
 export const FETCH_GNOMES_BEGIN = 'FETCH_GNOMES_BEGIN';
 export const FETCH_GNOMES_SUCCESS = 'FETCH_GNOMES_SUCCESS';
@@ -40,8 +40,7 @@ export function loadMore() {
 export function fetchGnomes() {
   return (dispatch) => {
     dispatch(fetchGnomesBegin());
-    return Axios.get('https://raw.githubusercontent.com/rrafols/mobile_test/master/data.json')
-      .then(({ data }) => data.Brastlewark)
+    return API.getBrastlewarkGnomes()
       .then((json) => {
         dispatch(fetchGnomesSuccess(json));
         return json;
