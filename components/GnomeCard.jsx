@@ -1,13 +1,10 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import LazyImg from './LazyImg';
 import GnomeModal from './GnomeModal';
 
 class GnomeCard extends Component {
-  static toHttps(src) {
-    return src.replace('http://', 'https://');
-  }
-
   constructor(props) {
     super(props);
     this.cardClick = this.cardClick.bind(this);
@@ -37,7 +34,7 @@ class GnomeCard extends Component {
         <div className="tile is-child box card gnome-card" onClick={this.cardClick}>
           <div className="card-image">
             <figure className="image is-4by3">
-              <img src={GnomeCard.toHttps(gnome.thumbnail)} alt="" />
+              <LazyImg src={gnome.thumbnail} />
             </figure>
           </div>
           <div className="card-content">

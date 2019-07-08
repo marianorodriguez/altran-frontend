@@ -2,9 +2,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import LazyLoad from 'react-lazy-load';
 import { fetchGnomes } from '../store/gnomes/actions';
 import GnomeCard from './GnomeCard';
 import Message from './Message';
+
 
 function listToMatrix(list, elementsPerSubArray) {
   const matrix = [];
@@ -50,7 +52,11 @@ class GnomesList extends Component {
           listToMatrix(gnomes.slice(0, itemsInPage), 4)
             .map(gnomesRow => (
               <div className="tile is-ancestor" key={gnomesRow.map(r => r.id).join('')}>
-                {gnomesRow.map(gnome => (<GnomeCard key={gnome.id} gnome={gnome} />))}
+                {gnomesRow.map(gnome => (
+                  <LazyLoad key={gnome.id}>
+                    <GnomeCard gnome={gnome} />
+                  </LazyLoad>
+                ))}
               </div>
             ))
         }
