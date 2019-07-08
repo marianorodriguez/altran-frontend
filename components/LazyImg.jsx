@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import LazyLoad from 'react-lazy-load';
 
 const LazyImg = ({ src }) => (
-  <LazyLoad offsetVertical={500}>
+  <LazyLoad offsetVertical={1000}>
     <img src={LazyImg.toHttps(src)} alt="" />
   </LazyLoad>
 );
