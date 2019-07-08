@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 import GnomeModal from './GnomeModal';
 
 class GnomeCard extends Component {
+  static toHttps(src) {
+    return src.replace('http://', 'https://');
+  }
+
   constructor(props) {
     super(props);
     this.cardClick = this.cardClick.bind(this);
@@ -33,7 +37,7 @@ class GnomeCard extends Component {
         <div className="tile is-child box card gnome-card" onClick={this.cardClick}>
           <div className="card-image">
             <figure className="image is-4by3">
-              <img src={gnome.thumbnail} alt="" />
+              <img src={GnomeCard.toHttps(gnome.thumbnail)} alt="" />
             </figure>
           </div>
           <div className="card-content">

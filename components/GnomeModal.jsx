@@ -12,7 +12,7 @@ const GnomeModal = (props) => {
           <article className="media">
             <div className="media-left">
               <figure className="image is-64x64">
-                <img src={gnome.thumbnail} alt="" />
+                <img src={GnomeModal.toHttps(gnome.thumbnail)} alt="" />
               </figure>
             </div>
             <div className="content">
@@ -39,6 +39,8 @@ const GnomeModal = (props) => {
     </div>
   );
 };
+
+GnomeModal.toHttps = src => src.replace('http://', 'https://');
 
 GnomeModal.propTypes = {
   gnome: PropTypes.objectOf(PropTypes.any).isRequired,
