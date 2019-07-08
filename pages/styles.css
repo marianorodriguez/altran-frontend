@@ -3,6 +3,7 @@ html {
 }
 .main {
     background-color: #e4e5ea;
+    min-height: 100vh;
 }
 .gnomes-message {
     margin: 15px;
@@ -27,6 +28,14 @@ html {
 }
 .gnome-card img {
     object-fit: cover;
+}
+.tile .modal .image {
+    overflow: hidden;
+}
+.tile .modal img {
+    object-fit: cover;
+    height: 64px;
+    border-radius: 64px;
 }
 .centered {
     display: flex !important; 
@@ -59,4 +68,8 @@ html {
     width: 60px;
     height: 60px;
     opacity: 1;
+}
+
+.content ul {
+    margin-top: 0;
 }
