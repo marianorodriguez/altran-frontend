@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import LazyLoad from 'react-lazy-load';
 import { fetchGnomes } from '../store/gnomes/actions';
 import GnomeCard from './GnomeCard';
 import Message from './Message';
@@ -53,9 +52,7 @@ class GnomesList extends Component {
             .map(gnomesRow => (
               <div className="tile is-ancestor" key={gnomesRow.map(r => r.id).join('')}>
                 {gnomesRow.map(gnome => (
-                  <LazyLoad key={gnome.id}>
-                    <GnomeCard gnome={gnome} />
-                  </LazyLoad>
+                  <GnomeCard key={gnome.id} gnome={gnome} />
                 ))}
               </div>
             ))
