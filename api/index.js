@@ -1,6 +1,6 @@
-import Axios from 'axios';
+const axios = require('axios');
 
-export default {
-  getBrastlewarkGnomes: () => Axios.get('https://raw.githubusercontent.com/rrafols/mobile_test/master/data.json')
+module.exports = {
+  getBrastlewarkGnomes: () => axios.get('https://raw.githubusercontent.com/rrafols/mobile_test/master/data.json')
     .then(({ data }) => data.Brastlewark),
 };
