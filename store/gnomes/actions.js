@@ -20,17 +20,17 @@ const fetchGnomesError = error => ({
   payload: { error },
 });
 
-const filterGnomesBegin = text => ({
+const filterGnomesBegin = payload => ({
   type: FILTER_GNOMES,
-  payload: { text },
+  payload,
 });
 
 const loadMoreGnomes = () => ({
   type: LOAD_MORE_GNOMES,
 });
 
-export function filterGnomes(text) {
-  return dispatch => dispatch(filterGnomesBegin(text));
+export function filterGnomes({ profession, name }) {
+  return dispatch => dispatch(filterGnomesBegin({ profession, name }));
 }
 
 export function loadMore() {

@@ -9,6 +9,9 @@ import {
 const initialState = {
   items: [],
   filteredItems: [],
+  professionsList: [],
+  nameFilter: '',
+  professionFilter: '',
   itemsPerPage: 16,
   itemsInPage: 16,
   loading: false,
@@ -16,13 +19,26 @@ const initialState = {
 };
 
 function doFilter(state, action) {
-  const { text } = action.payload;
+  const { profession, name } = action.payload;
+  const professionFilter = typeof profession === 'string' ? profession : state.professionFilter;
+  const nameFilter = typeof name === 'string' ? name : state.nameFilter;
+  const filteredItems = state.items
+    .filter(i => i.name.toLowerCase().indexOf(nameFilter) > -1)
+    .filter(i => i.professions.some(p => p.toLowerCase()
+      .indexOf((professionFilter).toLowerCase()) > -1));
   return {
     ...state,
-    filteredItems: state.items
-      .filter(i => i.name.toLowerCase().indexOf(text.toLowerCase()) > -1
-            || i.professions.some(p => p.toLowerCase().indexOf(text.toLowerCase()) > -1)),
+    professionFilter,
+    nameFilter,
+    filteredItems,
   };
+}
+
+function getProfessionList(items) {
+  let array = [...new Set(items.map(i => i.professions.join(',')).join(',').split(',').filter(p => !!p))];
+  array = array.map(p => p.trim());
+  array.sort();
+  return array;
 }
 
 export default (state = initialState, action) => {
@@ -39,6 +55,7 @@ export default (state = initialState, action) => {
         loading: false,
         items: action.payload.items,
         filteredItems: action.payload.items,
+        professionsList: getProfessionList(action.payload.items),
       };
     case FETCH_GNOMES_ERROR:
       return {

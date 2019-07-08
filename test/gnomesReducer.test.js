@@ -8,6 +8,9 @@ import {
 const initialState = {
   items: [],
   filteredItems: [],
+  professionsList: [],
+  nameFilter: '',
+  professionFilter: '',
   itemsPerPage: 16,
   itemsInPage: 16,
   loading: false,
@@ -60,16 +63,24 @@ describe('GNOMES REDUCER', () => {
   test('should filter results on FILTER_GNOMES action', () => {
     expect(reducer({ ...initialState, items: [mockGnome1, mockGnome2] }, {
       type: FILTER_GNOMES,
-      payload: { text: 'cook' },
+      payload: { profession: 'cook' },
+    }).filteredItems.length).toEqual(1);
+  });
+
+  test('should filter results on FILTER_GNOMES action with two filters', () => {
+    expect(reducer({ ...initialState, items: [mockGnome1, mockGnome2] }, {
+      type: FILTER_GNOMES,
+      payload: { profession: 'blacksmith', name: 'mock name 2' },
     }).filteredItems.length).toEqual(1);
   });
 
   test('should filter all results on FILTER_GNOMES action with unmatching text', () => {
     expect(reducer({ ...initialState, items: [mockGnome1, mockGnome2] }, {
       type: FILTER_GNOMES,
-      payload: { text: 'barber' },
+      payload: { profession: 'barber' },
     }).filteredItems.length).toEqual(0);
   });
+
 
   test('should increment number of items in page on LOAD_MORE_GNOMES action', () => {
     expect(reducer(initialState, {

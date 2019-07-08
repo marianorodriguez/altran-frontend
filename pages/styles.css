@@ -29,6 +29,12 @@ html {
 .gnome-card img {
     object-fit: cover;
 }
+.gnomes-search-field {
+    justify-content: space-between;
+}
+.gnomes-search-field .profession-filter {
+    flex-grow: 0;
+}
 .tile .modal .image {
     overflow: hidden;
 }
