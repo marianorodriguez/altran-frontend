@@ -7,7 +7,7 @@ import GnomeModal from './GnomeModal';
 class GnomeCard extends Component {
   constructor(props) {
     super(props);
-    this.cardClick = this.cardClick.bind(this);
+    this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.state = {
       modalActive: false,
@@ -20,7 +20,7 @@ class GnomeCard extends Component {
     });
   }
 
-  cardClick() {
+  openModal() {
     this.setState({
       modalActive: true,
     });
@@ -31,7 +31,7 @@ class GnomeCard extends Component {
     const { modalActive } = this.state;
     return (
       <div className="tile is-parent">
-        <div className="tile is-child box card gnome-card" onClick={this.cardClick}>
+        <div className="tile is-child box card gnome-card" onClick={this.openModal}>
           <div className="card-image">
             <figure className="image is-4by3">
               <LazyImg src={gnome.thumbnail} />
