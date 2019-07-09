@@ -20,8 +20,8 @@ const initialState = {
 
 function doFilter(state, action) {
   const { profession, name } = action.payload;
-  const professionFilter = typeof profession === 'string' ? profession : state.professionFilter;
-  const nameFilter = typeof name === 'string' ? name : state.nameFilter;
+  const professionFilter = (typeof profession === 'string' ? profession : state.professionFilter).toLowerCase();
+  const nameFilter = (typeof name === 'string' ? name : state.nameFilter).toLowerCase();
   const filteredItems = state.items
     .filter(i => i.name.toLowerCase().indexOf(nameFilter) > -1)
     .filter(i => i.professions.some(p => p.toLowerCase()
