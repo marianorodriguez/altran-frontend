@@ -23,7 +23,7 @@ const GnomeModal = (props) => {
               <br />
               {`Weight: ${gnome.weight} kg`}
               <br />
-              {`Height: ${gnome.height} m`}
+              {`Height: ${gnome.height} cm`}
               <br />
               {`Hair color: ${gnome.hair_color}`}
               <br />
