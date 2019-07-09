@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { fetchGnomes } from '../store/gnomes/actions';
 import GnomeCard from './GnomeCard';
 import Message from './Message';
+import LoadingSpinner from './LoadingSpinner';
 
 
 function listToMatrix(list, elementsPerSubArray) {
@@ -38,15 +39,15 @@ class GnomesList extends Component {
     if (error) {
       return <Message type="error" message={error} />;
     }
-    let className = 'gnomes-list';
+
     if (loading) {
-      className += ' loading';
+      return <LoadingSpinner />;
     }
     if (!loading && gnomes.length === 0 && total > 0) {
       return <Message type="primary" message="Oops... we ran out of gnomes!" />;
     }
     return (
-      <div className={className} id="gnomesList">
+      <div className="gnomes-list" id="gnomesList">
         {
           listToMatrix(gnomes.slice(0, itemsInPage), 4)
             .map(gnomesRow => (

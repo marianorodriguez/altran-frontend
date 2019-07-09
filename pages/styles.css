@@ -5,14 +5,15 @@ html {
     background-color: #e4e5ea;
     min-height: 100vh;
 }
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+}
 .gnomes-message {
     margin: 15px;
 }
 .gnomes-list {
     margin: 15px;
-}
-.gnomes-list.loading {
-    opacity: 0.5;
 }
 .gnome-card {
     padding: 0;
